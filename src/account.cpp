@@ -1,13 +1,12 @@
 #include "account.h"
 
-bool CppSwift::Account::is_valid() {
-    return !auth_token.empty();
+CppSwift::Account::operator bool() {
+    return static_cast<bool>(connection) && static_cast<bool>(*connection);
 }
 
 
 CppSwift::Account CppSwift::Account::login() {
     Account account;
-    account.auth_token = "xxx";
     return account;
 }
 

@@ -1,7 +1,5 @@
-file(GLOB CPPSWIFT_FILES "*.cpp")
-file(GLOB CPPSWIFT_HEADERS "*.h")
+file(GLOB_RECURSE CPPSWIFT_FILES "*.cpp")
 set(CPPSWIFT_FILES ${CPPSWIFT_FILES} PARENT_SCOPE)
+
+file(GLOB_RECURSE CPPSWIFT_HEADERS "*.h")
 set(CPPSWIFT_HEADERS ${CPPSWIFT_HEADERS} PARENT_SCOPE)
-
-#add_executable(testingtest main.cpp factorialcomputer.cpp)
-

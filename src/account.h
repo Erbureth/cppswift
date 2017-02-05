@@ -1,13 +1,16 @@
 #pragma once
 
+#include "connection.h"
+
+#include <memory>
 #include <string>
 
 namespace CppSwift {
 
 class Account {
-    std::string auth_token;
+    std::shared_ptr<Connection> connection;
 public:
-    bool is_valid();
+    operator bool();
 
     static Account login();
 };

@@ -5,5 +5,5 @@
 using namespace CppSwift;
 
 TEST(AccountTest, BasicTest) {
-    EXPECT_EQ(true, Account::login().is_valid());
+    EXPECT_EQ(true, static_cast<bool>(Account::login()));
 }
