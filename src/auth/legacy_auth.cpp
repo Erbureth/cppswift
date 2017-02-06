@@ -13,11 +13,13 @@
 #include <Poco/Net/HTTPRequest.h>
 #include <Poco/URI.h>
 
+#include <iostream>
+
 CppSwift::Auth::AuthConnInfo CppSwift::Auth::LegacyAuth::get_conn_info() {
     Poco::URI uri{url};
-    Poco::Net::HTTPClientSession session{
-        uri.getHost() + ":" + std::to_string(uri.getPort())
-    };
+
+    Poco::Net::HTTPClientSession session{uri.getHost(), uri.getPort()};
+
     Poco::Net::HTTPRequest request(
         Poco::Net::HTTPRequest::HTTP_GET,
         uri.getPath() + "auth/v1.0"

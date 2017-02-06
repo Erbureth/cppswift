@@ -1,6 +1,7 @@
 #pragma once
 
 #include "connection.h"
+#include "auth/authenticator.h"
 
 #include <memory>
 #include <string>
@@ -12,7 +13,7 @@ class Account {
 public:
     operator bool();
 
-    static Account login();
+    static Account login(std::unique_ptr<Auth::Authenticator> &&authenticator);
 };
 
 }
