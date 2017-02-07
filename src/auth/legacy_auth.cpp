@@ -55,4 +55,3 @@ std::unique_ptr<CppSwift::Auth::Authenticator> CppSwift::Auth::LegacyAuth::creat
     authenticator->password = password;
     return std::move(authenticator);
 }
-

@@ -9,17 +9,26 @@ namespace Auth {
 class AuthConnection : public virtual Connection {
     std::unique_ptr<Authenticator> authenticator;
     Token token;
-    std::string url;
+    std::string scheme;
+    std::string host;
+    unsigned short port;
+    std::string path;
+
+    std::unique_ptr<Net::HTTPSession> session;
+
+    void reauthenticate();
 public:
-    AuthConnection(std::unique_ptr<Authenticator> &&authenticator)
-     : authenticator(std::move(authenticator)) {
-         AuthConnInfo aci = this->authenticator->get_conn_info();
-         token = aci.token;
-         url = aci.url;
-    }
+    AuthConnection(std::unique_ptr<Authenticator> &&authenticator);
 
     virtual operator bool() const override;
-    virtual const std::string & get_url() const override;
+
+    virtual void prepare_request(
+        Net::Request &request,
+        const Net::Method &method,
+        const std::string &endpoint
+    ) override;
+    virtual std::ostream & send_request(Net::Request &request) override;
+    virtual std::istream & receive_response(Net::Response &response) override;
 };
 
 }
