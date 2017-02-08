@@ -13,7 +13,7 @@ std::string CppSwift::Account::get_endpoint() const {
 
 std::vector<CppSwift::Container> CppSwift::Account::list_containers() {
     std::vector<Container> containers;
-    //TODO: Use JSON format the next time
+    //TODO: Rewrite to use JSON format
     std::istream & data = connection->request(Net::Request::HTTP_GET, get_endpoint());
     std::string container_name;
     while (data >> container_name) {
